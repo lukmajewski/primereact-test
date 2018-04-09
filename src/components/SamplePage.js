@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import axios from 'axios'
+import './SamplePage.css'
 import {
   DataView,
   DataViewLayoutOptions
@@ -52,17 +54,30 @@ export default class SamplePage extends Component {
 
   render() {
 
+    const StyledToolbar = styled(Toolbar)`
+      background: pink;
+      padding: 2em;
+    `
+
+    const StyledSelectButton = styled(SelectButton)`
+      background: yellow;
+
+      .ui-button-text {
+        color: red;
+      }
+    `
+
     return (
       <div>
-        <Toolbar>
+        <StyledToolbar>
           <h2>Sorting: </h2>
-          <SelectButton
+          <StyledSelectButton
             value={this.state.sortingOption}
             options={this.sortingOptions}
             optionLabel={'label'}
             onChange={this.onSortSelectChange.bind(this)} 
           />
-        </Toolbar>
+        </StyledToolbar>
         <DataView
           value={this.state.records}
           itemTemplate={this.renderItemTemplate.bind(this)}
